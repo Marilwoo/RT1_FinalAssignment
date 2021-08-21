@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<launch>
+
+	<arg name="state_" default= "5"/>
+    <param name="state" value="$(arg state_)" />
+    <arg name="done_" default= "True"/>
+    <param name="done" value="$(arg done_)" />
+    
+	<node pkg="final_assignment" type="user_interface.py" name="user_interface" output="screen" />
+	<node pkg="final_assignment" type="random_serv.py" name="random_serv" />
+    <node pkg="final_assignment" type="controller.py" name="controller" output="screen" />
+
+</launch>
