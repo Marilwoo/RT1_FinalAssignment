@@ -13,15 +13,15 @@ The arcitecture consisted in getting the user request and make the robot execute
 The final_assignment package contains four nodes: user interface, controller, random_serv and wall_follow_service_m
 
 ### Nodes description
-- The first node, user_interface, is the node for explaining the modalities to the user and to ask to choose the one to start with. It contains a subscriber to the /odom topic for retreiving the robot position and, when the user choose the modality it sets the parameter `state`.
+- The first node, user_interface, is the node for explaining the modalities to the user and to ask to choose the one to start with. It contains a subscriber to the `/odom` topic for retreiving the robot position and, when the user choose the modality it sets the parameter `state`.
 
-- The second node, random_serv, is a server of the service 'random_pos' of type "random_targ", it is used to compute a random integer number between 1 and 6. It receives as a request the numbers to generate a number in between and gives as a response the x and y coordinates for the target. Every number corresponds to a target position:
+- The second node, random_serv, is a server of the service `random_pos` of type `random_targ`, it is used to compute a random integer number between 1 and 6. It receives as a request the numbers to generate a number in between and gives as a response the x and y coordinates for the target. Every number corresponds to a target position:
 	1-> (-4,3), 2-> (-4,2), 3-> (-4,7), 4-> (5,-7), 5-> (5,-3), 6-> (5,1)
 
-- The third node, wall_follow_service_m, is the node used for making the robot follow the walls, it is a service called 'wall_follower_switch" of type "SetBool", it reads the output from the laser scan (subscriber of the topic /scan) and uses it for changing the states of a finite state machine: find wall, turn left and follow the walls. Inside the functions for every state the velocities, linear and angular, are set and then published on the topic /cmd_vel
+- The third node, wall_follow_service_m, is the node used for making the robot follow the walls, it is a service called `wall_follower_switch` of type `SetBool`, it reads the output from the laser scan (subscriber of the topic /scan) and uses it for changing the states of a finite state machine: find wall, turn left and follow the walls. Inside the functions for every state the velocities, linear and angular, are set and then published on the topic /cmd_vel
 
-- The fourth node, controller, is used for controlling the behaviour of the robot, it takes the first action by getting the parameter "state" set in the user interface. There are four functions for every possible modality of the robot, and a function for updating the state when possible: it takes an input from the user and calls the respective function.
-This node contains: a subscriber to the topic /odom for the robot position; two publishers: one for setting the goal (move_base/goal) and one for manually setting the velocities (cmd_vel); two clients: one for the random position (random_pos) and one for the wall follow mode (/wall_follower_switch)
+- The fourth node, controller, is used for controlling the behaviour of the robot, it takes the first action by getting the parameter `state` set in the user interface. There are four functions for every possible modality of the robot, and a function for updating the state when possible: it takes an input from the user and calls the respective function.
+This node contains: a subscriber to the topic `/odom` for the robot position; two publishers: one for setting the goal (`move_base/goal`) and one for manually setting the velocities (`cmd_vel`); two clients: one for the random position (`random_pos`) and one for the wall follow mode (`/wall_follower_switch`)
 
 #### functions:
   - Function for random position: it calls the random position service and gets the target position as the response. Also, it prints the distance of the robot from the target. When the target is reached the function for changing modality is called and the user can change it or simply call again the same.
