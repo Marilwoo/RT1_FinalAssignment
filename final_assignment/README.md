@@ -29,7 +29,7 @@ This node contains: a subscriber to the topic `/odom` for the robot position; tw
   - Function for following the walls: calls the wall_follower_switch and the wall_follow_service node. In this case the user have the possibility to change the modality, or stop the robot at every moment.
   - Function for stopping the robot in current position. It can be called after the "target reached" in the manual and random modality or at everty moment during the wall_follow mode. Also in this case the user can change modality at every time.
 
-The package contains also the service random_targ
+The package contains also the custom service random_targ
 ```
 float32 min
 float32 max
