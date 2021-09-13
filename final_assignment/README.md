@@ -13,7 +13,7 @@ The arcitecture consisted in getting the user request and make the robot execute
 The final_assignment package contains four nodes: user interface, controller, random_serv and wall_follow_service_m
 
 ### Nodes description
-- The first node, user_interface, is the node for explaining the modalities to the user and to ask to choose the one to start with. It contains a subscriber to the /odom topic for retreiving the robot position and, when the user choose the modality it sets the parameter "state".
+- The first node, user_interface, is the node for explaining the modalities to the user and to ask to choose the one to start with. It contains a subscriber to the /odom topic for retreiving the robot position and, when the user choose the modality it sets the parameter 'state'.
 
 - The second node, random_serv, is a server of the service 'random_pos' of type "random_targ", it is used to compute a random integer number between 1 and 6. It receives as a request the numbers to generate a number in between and gives as a response the x and y coordinates for the target. Every number corresponds to a target position:
 	1-> (-4,3), 2-> (-4,2), 3-> (-4,7), 4-> (5,-7), 5-> (5,-3), 6-> (5,1)
